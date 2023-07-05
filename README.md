@@ -2,22 +2,25 @@
 Neste projeto esta contido duas parte, back-end e Front-end. Todo o CRUD foi testado e esta funcionando.
 
 ## Ferramenta utilizada
-Visual studio 2022
+- Visual studio 2022
 
 ## Front-End
-Aplicatiov Web do Asp.Net Core (Model-View-Controller) (.net 5.0)
+- Aplicatiov Web do Asp.Net Core (Model-View-Controller) (.net 5.0)
+- Razor
 
 ## Back-End
-API Web do Asp.Net Core (.net 5.0)
-Para subir o projeto Back-End foi usado o Swagger.
+- API Web do Asp.Net Core (.net 5.0)
+- MVC
+- X.PagedList / X.PagedList.Mvc
+- Para subir o projeto Back-End foi usado o Swagger.
 
 ## SGDB
-Sql-Server (2018)
+- Sql-Server (2018)
 
 ## Script para criação da tabela usada no teste:
-USE [Autoglass]
-GO
-CREATE TABLE [dbo].[TblProduto](
+- USE [Autoglass]
+- GO
+- CREATE TABLE [dbo].[TblProduto](
 	[idProduto] [int] IDENTITY(1,1) NOT NULL,
 	[Descricao] [varchar](100) NOT NULL,
 	[DtFabricacao] [date] NULL,
@@ -32,3 +35,7 @@ CREATE TABLE [dbo].[TblProduto](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+# Estrutura do projeto
+
+

@@ -3,7 +3,7 @@ Neste projeto esta contido duas parte, back-end e Front-end. Todo o CRUD foi tes
 
 ## Ferramenta utilizada
 - Visual studio 2022
-  Soluction
+  - Soluction
     - Front - AutoglassWeb
     - Back  - Autoglass
 ## Front-End
@@ -16,11 +16,13 @@ Neste projeto esta contido duas parte, back-end e Front-end. Todo o CRUD foi tes
 - X.PagedList.Mvc.Core (7.6.0)
   
   Bootstrap/Jquery
-- https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css
-- https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
-- https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js
+    - https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css
+    - https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
+    - https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js
 
 ## Back-End
+   ## Para subir o projeto Back-End foi usado o Swagger.
+
 - API Web do Asp.Net Core (.net 5.0)
 - MVC
 - X.PagedList / X.PagedList.Mvc
@@ -34,8 +36,6 @@ Neste projeto esta contido duas parte, back-end e Front-end. Todo o CRUD foi tes
 - AutoMapper (12.0.1)
 - AutoMapper.Extensions.Microsoft.DependencyInjection (12.0.1)
 - Dapper (2.0.123)
-
-## Para subir o projeto Back-End foi usado o Swagger.
 
 ## SGDB
 - Sql-Server (2018)

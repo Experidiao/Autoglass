@@ -4,8 +4,8 @@ Neste projeto esta contido duas parte, back-end e Front-end. Todo o CRUD foi tes
 ## Ferramenta utilizada
 - Visual studio 2022
   Soluction
-     Front - AutoglassWeb
-     Back  - Autoglass
+  Front - AutoglassWeb
+  Back  - Autoglass
 ## Front-End
    ## Usado Framework Razor
 - Aplicatiov Web do Asp.Net Core (Model-View-Controller) (.net 5.0)
@@ -16,9 +16,9 @@ Neste projeto esta contido duas parte, back-end e Front-end. Todo o CRUD foi tes
 - X.PagedList.Mvc.Core (7.6.0)
   
   Bootstrap/Jquery
-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+- https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css
+- https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
+- https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js
 
 ## Back-End
 - API Web do Asp.Net Core (.net 5.0)

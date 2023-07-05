@@ -1,0 +1,81 @@
+﻿@model AutoglassWeb.Models.Produto
+
+<h2> Confirma a Exclusão do Produto ?</h2>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Código Produto")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdProduto)
+        </dd>
+        <dt>
+            @Html.DisplayName("Descricao");
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Dt.Fabricação")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DtFabricacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Dt.Validade")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DtValidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Código Fornecedor")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoFornecedor)
+        </dd>
+        <dt>
+            @Html.DisplayName("Nome Fornecedor")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescricaoFornecedor)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Cnpj Fornecedor")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CnpjFornecedor)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Situação")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Situacao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Voltar" class="btn btn-secondary" formaction="@Url.Action("Index","Produto")" />
+            <input type="submit" value="Excluir" class="btn btn-primary" />
+        </div>
+    }
+</div>
+

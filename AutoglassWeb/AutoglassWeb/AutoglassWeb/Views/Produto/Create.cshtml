@@ -1,0 +1,72 @@
+﻿@model AutoglassWeb.Models.Produto
+
+<h2>Cadastrar Produto</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Descricao, "Descriçao")
+            @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.DtFabricacao, "Dt. Fabricação")
+            @Html.EditorFor(model => model.DtFabricacao, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DtFabricacao, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.DtValidade, "Dt. Validade")
+            @Html.EditorFor(model => model.DtValidade, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DtValidade, "", new { @class = "text-danger" })
+        </div>
+   </div>
+
+    <div class="row">
+        <div class="form-group col-md-3">
+            @Html.LabelFor(model => model.CodigoFornecedor, "Código Fornecedor")
+            @Html.EditorFor(model => model.CodigoFornecedor, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CodigoFornecedor, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.DescricaoFornecedor, "Nome Fornecedor")
+            @Html.EditorFor(model => model.DescricaoFornecedor, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DescricaoFornecedor, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="form-group col-md-3">
+            @Html.LabelFor(model => model.CnpjFornecedor, "Cnpj Fornecedor")
+            @Html.EditorFor(model => model.CnpjFornecedor, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CnpjFornecedor, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-3">
+            @Html.LabelFor(model => model.Situacao, "Situação")
+            @Html.EditorFor(model => model.Situacao, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Situacao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+        <div class="col-md-10">
+            <input type="submit" value="Voltar" class="btn btn-secondary" formaction="@Url.Action("Index","Produto")" />
+            <input type="submit" value="Enviar" class="btn btn-primary" />
+        </div>
+    </div>
+}
+

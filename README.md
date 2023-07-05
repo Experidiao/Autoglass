@@ -21,21 +21,45 @@ Neste projeto esta contido duas parte, back-end e Front-end. Todo o CRUD foi tes
 - USE [Autoglass]
 - GO
 - CREATE TABLE [dbo].[TblProduto](
-	[idProduto] [int] IDENTITY(1,1) NOT NULL,
-	[Descricao] [varchar](100) NOT NULL,
-	[DtFabricacao] [date] NULL,
-	[DtValidade] [date] NULL,
-	[CodigoFornecedor] [varchar](20) NULL,
-	[DescricaoFornecedor] [varchar](100) NULL,
-	[CnpjFornecedor] [varchar](20) NULL,
-	[Situacao] [int] NULL,
- CONSTRAINT [PK_TblProduto] PRIMARY KEY CLUSTERED 
-(
-	[idProduto] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
+-	[idProduto] [int] IDENTITY(1,1) NOT NULL,
+-	[Descricao] [varchar](100) NOT NULL,
+-	[DtFabricacao] [date] NULL,
+-	[DtValidade] [date] NULL,
+-	[CodigoFornecedor] [varchar](20) NULL,
+-	[DescricaoFornecedor] [varchar](100) NULL,
+-	[CnpjFornecedor] [varchar](20) NULL,
+-	[Situacao] [int] NULL,
+- CONSTRAINT [PK_TblProduto] PRIMARY KEY CLUSTERED 
+- (
+-	[idProduto] ASC
+- )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = --- OFF) ON [PRIMARY]
+- ) ON [PRIMARY]
+- GO
 
 # Estrutura do projeto
+- Application
+  - Autoglass.Application
+    - AutoMapper
+    - DTO
+    - Interface
+    - Services
+  - Domain
+  - Autoglass.Domain
+    - Interfaces
+    - Models
+- Infra
+    - CrossCutting
+      - Autoglass.Infra.CrossCutting.IoC
+        - InjetorDependencias
+    - Data
+      - Autoglass.Infra.Data
+        - Context
+        - Mappings
+        - Repository
+        - UoW
+- Service Api
+  - Autoglass.Services.Api
+    - Controllers
+
 
 

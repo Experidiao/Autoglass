@@ -4,8 +4,8 @@ Neste projeto esta contido duas parte, back-end e Front-end. Todo o CRUD foi tes
 ## Ferramenta utilizada
 - Visual studio 2022
   Soluction
-  Front - AutoglassWeb
-  Back  - Autoglass
+    - Front - AutoglassWeb
+    - Back  - Autoglass
 ## Front-End
    ## Usado Framework Razor
 - Aplicatiov Web do Asp.Net Core (Model-View-Controller) (.net 5.0)

@@ -5,14 +5,35 @@ Neste projeto esta contido duas parte, back-end e Front-end. Todo o CRUD foi tes
 - Visual studio 2022
 
 ## Front-End
+   ## Usado Framework Razor
 - Aplicatiov Web do Asp.Net Core (Model-View-Controller) (.net 5.0)
-- Razor
+- Microsoft.AspNetCore.Mvc.Core (2.2.0)
+- Microsoft.AspNetCore.Mvc.Razor (2.2.0)
+- Microsoft.AspNetCore.Mvc.RazorPages (2.2.0)
+- Microsoft.EntityFrameworkCore (5.0.0)
+- X.PagedList.Mvc.Core (7.6.0)
+  
+  Bootstrap/Jquery
+- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 ## Back-End
 - API Web do Asp.Net Core (.net 5.0)
 - MVC
 - X.PagedList / X.PagedList.Mvc
-- Para subir o projeto Back-End foi usado o Swagger.
+- FluentValidation.AspNetCore (10.3.6)
+- Microsoft.EntityFrameworkCore (5.0.13)
+- Microsoft.EntityFrameworkCore.Abstractions (5.0.13)
+- Microsoft.EntityFrameworkCore.Design (5.0.13)
+- Microsoft.EntityFrameworkCore.SqlServer (5.0.13)
+- Microsoft.EntityFrameworkCore.Tools (5.0.13)
+- Swashbuckle.AspNetCore (5.6.3)
+- AutoMapper (12.0.1)
+- AutoMapper.Extensions.Microsoft.DependencyInjection (12.0.1)
+- Dapper (2.0.123)
+
+## Para subir o projeto Back-End foi usado o Swagger.
 
 ## SGDB
 - Sql-Server (2018)

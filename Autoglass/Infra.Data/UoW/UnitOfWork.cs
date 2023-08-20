@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,6 @@ namespace Infra.Data.UoW
         private readonly AutoglassContext _context;
 
         public UnitOfWork(AutoglassContext context) => _context = context;
-
         public async Task<bool> Commit()
         {
             var success = (await _context.SaveChangesAsync()) > 0;

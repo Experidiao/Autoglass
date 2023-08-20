@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using System.Linq.Expressions;
+using Microsoft.Extensions.WebEncoders.Testing;
 
 namespace Autoglass.Services.Api.Controllers
 {
@@ -16,10 +17,21 @@ namespace Autoglass.Services.Api.Controllers
     {
         private readonly IProdutoApplication _produtoApplication;
         private readonly IMapper _mapper;
+
         public ProdutoController(IProdutoApplication produtoApplication, IMapper mapper)
         {
             _produtoApplication = produtoApplication;
             _mapper = mapper;
+        }
+
+
+        [HttpGet()]
+        [Route("Teste/{produto?}/{descricao}/{nome}")]
+        [Route("Teste/{produto?}/{descricao}")]
+        [Route("Teste/{produto?}")]
+        public string obterTeste(int? produto, string descricao, string nome)
+        {
+           return "Speed";
         }
 
         [AllowAnonymous]
@@ -31,7 +43,7 @@ namespace Autoglass.Services.Api.Controllers
 
         [AllowAnonymous]
         [HttpGet("GetProcurarProduto/{ordenarPor}/{valorPesquisa}/{campoPesquisa}")]
-        public async Task<IEnumerable<Produto>> GetProcurarProduto(string ordenarPor, string valorPesquisa, string campoPesquisa)
+        public async Task<IEnumerable<Produto>> GetProcurarProduto(string ordenarPor="", string valorPesquisa="", string campoPesquisa="")
         {
             return await _produtoApplication.ProcurarProduto(ordenarPor, valorPesquisa, campoPesquisa);
         }
@@ -84,5 +96,14 @@ namespace Autoglass.Services.Api.Controllers
         {
             return await _produtoApplication.Delete(IdProduto);
         }
+
+
+        [AllowAnonymous]
+        [HttpGet("Page")]
+        public async Task<IEnumerable<Produto>> Page(int pagina, int qtdePorPagina, string ordem, string textoProcura)
+        {
+            return await _produtoApplication.Page(pagina, qtdePorPagina, ordem, textoProcura);
+        }
+
     }
 }

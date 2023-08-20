@@ -75,5 +75,10 @@ namespace Autoglass.Application.Services
 
             return (result == 0);
         }
+
+        public async Task<IEnumerable<Produto>> Page(int pagina, int qtdePorPagina, string ordem, string textoProcura)
+        {
+            return await _produtoRepository.Page(pagina,qtdePorPagina,ordem,textoProcura);
+        }
     }
 }

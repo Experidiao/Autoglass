@@ -13,7 +13,11 @@ namespace Autoglass.Application.AutoMapper
     {
         public AutoMappingProfile()
         {
-            CreateMap<ProdutoDTO, Produto>().ReverseMap();
+            // mapeando classe origem para classe destino. ReverseMap indica que pode ser ao contrário também.
+
+            CreateMap<Produto, ProdutoDTO>().ReverseMap();
+            CreateMap<Cliente, ClienteDTO>().ReverseMap();
+            CreateMap<ClienteXProduto, ClienteXProdutoDTO>().ReverseMap();
         }
     }
 }

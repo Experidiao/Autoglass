@@ -88,5 +88,24 @@ namespace Infra.Data.Repository
             //   var resultado = await _context.SaveChangesAsync();
             return await _UoW.Commit();
         }
+
+        public async Task<IEnumerable<Produto>> Page(int pagina, int qtdePorPagina, string ordem, string textoProcura)
+        {
+            string filtroWhere = "";
+            if (!string.IsNullOrEmpty(textoProcura))
+            {
+                filtroWhere = string.Format(" where Descricao like '%{0}%'", textoProcura);
+            }
+
+            var sql = @$" select * from TblProduto 
+                        {(string.IsNullOrEmpty(filtroWhere) ? null : filtroWhere)}
+                          order by {(string.IsNullOrEmpty(ordem) ? "Descricao" : ordem)}
+                         offset (@Pagina - 1) ROWS
+                          FETCH NEXT @QtdPorPagina ROWS ONLY";
+
+            var listaProduto = await _dbConnection.QueryAsync<Produto>(sql, new { Pagina = pagina, QtdPorPagina = qtdePorPagina });
+            return listaProduto;
+        }
+
     }
 }

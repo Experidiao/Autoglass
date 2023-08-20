@@ -16,6 +16,8 @@ using System.Threading.Tasks;
 using Autoglass.Infra.Data.Context;
 using Autoglass.Application.AutoMapper;
 using Autoglass.Infra.CrossCutting.IoC;
+using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Autoglass.Services.Api
 {
@@ -24,6 +26,7 @@ namespace Autoglass.Services.Api
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -32,19 +35,30 @@ namespace Autoglass.Services.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddMvc();
+
+            // Evitar o erro na controller de referencia circular 
+            // Instalar os pacotes : NewtonSoftJson/ Microsoft.AspNetCore.Mvc
+            services.AddControllers().AddJsonOptions(x =>
+              x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+
             services.AddControllers();
 
             // Setting DBContexts
             services.AddDbContext<AutoglassContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            // ioc
+            // inversão de controle - ioc
             InjetorDependencias.RegistrarDependencia(services);
+
             // mapper
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new AutoMappingProfile());
-            });
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
+            //var mapperConfig = new MapperConfiguration(mc =>
+            //{
+            //    mc.AddProfile(new AutoMappingProfile());
+            //});
+            //IMapper mapper = mapperConfig.CreateMapper();
+            //services.AddSingleton(mapper);
+
+            // outra maneira de configurar o serviço automapper.
+            services.AddAutoMapper(typeof(AutoMappingProfile));
 
 
             services.AddSwaggerGen(c =>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -17,5 +18,6 @@ namespace Autoglass.Domain.Models
         public string DescricaoFornecedor { get; set; }
         public string CnpjFornecedor { get; set; }
         public int Situacao { get; set; }
+        public virtual List<ClienteXProduto> ClienteXProdutos { get; set; }
     }
 }

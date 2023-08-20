@@ -17,11 +17,18 @@ namespace Autoglass.Infra.CrossCutting.IoC
     {
         public static void RegistrarDependencia(IServiceCollection services)
         {
+            // AddTransient - sempre que solicitado abre uma nova instancia
             // application 
-            services.AddScoped<IProdutoApplication, ProdutoApplication>();
+            services.AddTransient<IProdutoApplication, ProdutoApplication>();
+            services.AddTransient<IClienteApplication, ClienteApplication>();
+            services.AddTransient<IClienteXProdutoApplication, ClienteXProdutoApplication>();
 
             // infra
-            services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddTransient<IProdutoRepository, ProdutoRepository>();
+            services.AddTransient<IClienteRepository, ClienteRepository>();
+            services.AddTransient<IClienteXProdutoRepository, ClienteXProdutoRepository>();
+
+            // AddScoped -- Uma vez instancia, qdo for chamado novamente utiliza a mesma instancia.
             // contexto
             services.AddScoped<AutoglassContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();

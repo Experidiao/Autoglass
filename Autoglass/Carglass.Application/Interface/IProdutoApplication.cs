@@ -11,5 +11,6 @@ namespace Autoglass.Application.Interface
     public interface IProdutoApplication : IRepository<Produto>
     {
         Task<List<Produto>> ProcurarProduto(string ordenarPor, string valorPesquisa, string campoPesquisa);
+        Task<IEnumerable<Produto>> Page(int pagina, int qtdePorPagina, string ordem, string textoProcura);
     }
 }

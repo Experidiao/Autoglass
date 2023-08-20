@@ -13,7 +13,8 @@ namespace Autoglass.Infra.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
-            builder.HasKey(c => new { c.IdProduto });
+            builder.HasKey(c => c.IdProduto);
+            // obrigatorio a descricão do produto
             builder.Property(c => c.Descricao).HasMaxLength(60).IsRequired();
 
         }

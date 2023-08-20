@@ -14,12 +14,21 @@ using X.PagedList;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.Extensions.Configuration;
+using System.Security.Policy;
 
 namespace AutoglassWeb.Controllers
 {
     public class ProdutoController : Controller
     {
-        string EndpointBase = "https://localhost:44364/api/";
+        private IConfiguration _configuration;
+        private readonly string EndpointBase; 
+
+        public ProdutoController(IConfiguration configuration) {
+           this._configuration = configuration;
+            string EndpointBase = _configuration.GetSection("AppSetting").GetValue<string>("EndpointBase");
+
+        }
 
         // index
         public async Task<IActionResult> Index(int? Page, string ordenarPor, string valorPesquisa = "", string campoPesquisa = "")

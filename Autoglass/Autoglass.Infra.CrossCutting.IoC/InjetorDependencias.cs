@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autoglass.Infra.Data.Context;
+using Autoglass.Domain.Authentication;
+using Infra.Data.Authentication;
 
 namespace Autoglass.Infra.CrossCutting.IoC
 {
@@ -22,11 +24,14 @@ namespace Autoglass.Infra.CrossCutting.IoC
             services.AddTransient<IProdutoApplication, ProdutoApplication>();
             services.AddTransient<IClienteApplication, ClienteApplication>();
             services.AddTransient<IClienteXProdutoApplication, ClienteXProdutoApplication>();
+            services.AddTransient<IUserApplication, UserApplication>();
 
             // infra
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
             services.AddTransient<IClienteRepository, ClienteRepository>();
             services.AddTransient<IClienteXProdutoRepository, ClienteXProdutoRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ITokenGenerator,TokenGenerator>();
 
             // AddScoped -- Uma vez instancia, qdo for chamado novamente utiliza a mesma instancia.
             // contexto

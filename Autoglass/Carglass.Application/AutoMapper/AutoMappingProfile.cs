@@ -18,6 +18,7 @@ namespace Autoglass.Application.AutoMapper
             CreateMap<Produto, ProdutoDTO>().ReverseMap();
             CreateMap<Cliente, ClienteDTO>().ReverseMap();
             CreateMap<ClienteXProduto, ClienteXProdutoDTO>().ReverseMap();
+            CreateMap<User, UserDTO>().ReverseMap();
         }
     }
 }

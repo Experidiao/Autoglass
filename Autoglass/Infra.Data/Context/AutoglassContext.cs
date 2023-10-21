@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Autoglass.Domain.Models;
 using Autoglass.Infra.Data.Mappings;
+using Infra.Data.Mappings;
 
 namespace Autoglass.Infra.Data.Context
 {
@@ -10,6 +11,8 @@ namespace Autoglass.Infra.Data.Context
             : base(options)
         {
         }
+
+        public DbSet<User> TblUser { get; set; }
         public DbSet<Produto> TblProduto { get; set; }
         public DbSet<Cliente> TblCliente { get; set; }
         public DbSet<ClienteXProduto> TblClienteXProduto { get; set; }
@@ -28,6 +31,7 @@ namespace Autoglass.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new ProdutoMap());
             modelBuilder.ApplyConfiguration(new ClienteMap());
             modelBuilder.ApplyConfiguration(new ClienteXProdutoMap());
+            modelBuilder.ApplyConfiguration(new UserMap());
 
             base.OnModelCreating(modelBuilder);
         }

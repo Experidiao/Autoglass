@@ -38,11 +38,11 @@ namespace Infra.Data.Repository
 
         public async Task<IEnumerable<Cliente>> GetAll()
         {
-            List<Cliente> teste;
-            teste = await DbSet.ToListAsync();
-            //teste = await DbSet.AsNoTracking()
-            //   .ToListAsync();
-            return teste;
+            //  List<Cliente> teste;
+              var teste = await DbSet.ToListAsync();
+         //   return await DbSet.AsNoTracking();
+         //   //   .ToListAsync();
+           return teste;
         }
 
         public async Task<int> Create(Cliente cliente)

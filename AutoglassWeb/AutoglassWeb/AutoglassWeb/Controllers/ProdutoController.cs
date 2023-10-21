@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using AutoglassWeb.Data;
 using AutoglassWeb.Models;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
@@ -16,19 +15,26 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using System.Security.Policy;
+using System.Net.Http.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AutoglassWeb.Controllers
 {
     public class ProdutoController : Controller
     {
         private IConfiguration _configuration;
-        private readonly string EndpointBase; 
+        private readonly string EndpointBase;
+        private HttpClient client = new HttpClient();
 
-        public ProdutoController(IConfiguration configuration) {
-           this._configuration = configuration;
-            string EndpointBase = _configuration.GetSection("AppSetting").GetValue<string>("EndpointBase");
-
+        public ProdutoController(IConfiguration configuration)
+        {
+            this._configuration = configuration;
+            EndpointBase = _configuration.GetSection("AppSetting").GetValue<string>("EndpointBase");
+            client.BaseAddress = new Uri(EndpointBase);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
+
 
         // index
         public async Task<IActionResult> Index(int? Page, string ordenarPor, string valorPesquisa = "", string campoPesquisa = "")
@@ -56,9 +62,20 @@ namespace AutoglassWeb.Controllers
 
             int pagina = (Page ?? 1);
             int QtdPorPagina = 5;
-            var teste = EndpointBase + "Produto/GetProcurarProduto" + "/" + xOrdenarPor + "/" + xValorPesquisa + "/" + xCampoPesquisar;
+            var rota = "Produto/GetProcurarProduto" + "/" + xOrdenarPor + "/" + xValorPesquisa + "/" + xCampoPesquisar;
 
-            produto = await lerListaProdutoApi(EndpointBase + "Produto/GetProcurarProduto" + "/" + xOrdenarPor + "/" + xValorPesquisa + "/" + xCampoPesquisar);
+
+            var options = new JsonSerializerOptions()
+            {
+                ReferenceHandler = ReferenceHandler.Preserve,
+                PropertyNameCaseInsensitive = true
+            };
+
+        https://stackoverflow.com/questions/68246021/hosted-blazor-wasm-getfromjsonasync-the-json-value-could-not-be-converted-to-sy
+
+            var json = await client.GetFromJsonAsync<IEnumerable<Produto>>(rota, options);
+
+            // produto = await lerListaProdutoApi(rota);
 
             return View(produto.ToPagedList(pagina, QtdPorPagina));
         }
@@ -74,17 +91,23 @@ namespace AutoglassWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdProduto,Descricao,DtFabricacao,DtValidade,CodigoFornecedor,DescricaoFornecedor,CnpjFornecedor,Situacao")] Produto produto)
         {
+
+
             if (ModelState.IsValid)
             {
-                using (var client = new HttpClient())
-                {
-                    // faz a chamada do endpoint
-                    var endPoint = EndpointBase + "Produto/";
-                    var jsonString = JsonConvert.SerializeObject(produto);
-                    HttpContent httpContent = new StringContent(jsonString);
-                    httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-                    HttpResponseMessage ResultadoRequisicao = await client.PostAsync(endPoint, httpContent);
-                }
+                HttpResponseMessage resposta = await client.PostAsJsonAsync<Produto>("Produto/", produto);
+
+                //using (var client = new HttpClient())
+                //{
+                //    //// faz a chamada do endpoint
+                //    //var endPoint = EndpointBase + "Produto/";
+                //    //var jsonString = JsonConvert.SerializeObject(produto);
+                //    //HttpContent httpContent = new StringContent(jsonString);
+                //    //httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+
+
+                //}
 
                 return RedirectToAction("Index");
             }
@@ -209,14 +232,16 @@ namespace AutoglassWeb.Controllers
             return produto;
         }
 
-        public async Task<List<Produto>> lerListaProdutoApi(string endPoint)
+        public async Task<List<T>> lerListaProdutoApi<T>(string rota)
         {
+            string endPoint = _configuration.GetSection("AppSetting").GetValue<string>("EndpointBase");
+            endPoint += rota;
+
             // Rotina para buscar uma lista de dados e fazer a serialização.
-            List<Produto> produto = new List<Produto>();
 
             using (var client = new HttpClient())
             {
-                // faz a chamada do endpoint, traz um lista de objetos
+                // BaseAddress - informa o endereço base Ex: '"https://localhost:44363/"'
                 client.BaseAddress = new Uri(endPoint);
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -225,10 +250,10 @@ namespace AutoglassWeb.Controllers
                 {
                     // Se tudo ocorreu bem, fazer a serialização
                     var resposta = await ResultadoRequisicao.Content.ReadAsStringAsync();
-                    produto = JsonConvert.DeserializeObject<List<Produto>>(resposta);
+                    var result = JsonConvert.DeserializeObject<List<T>>(resposta);
                 }
             }
-            return produto;
+            return null;
         }
 
     }

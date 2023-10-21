@@ -108,6 +108,8 @@ namespace Autoglass.Services.Api.Controllers
             return Ok(itensDTO);
         }
 
+
+        // Sem decorar o método os parâmetros não são obrigatórios
         [AllowAnonymous]
         [HttpGet("Page")]
         public async Task<IActionResult> Page(int pagina, int qtdePorPagina, string ordem, string textoProcura)

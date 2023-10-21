@@ -10,7 +10,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Transactions;
 
 namespace Infra.Data.Repository
 {
@@ -31,7 +31,7 @@ namespace Infra.Data.Repository
 
         public async Task<Produto> GetById(int IdProduto)
         {
-            return await DbSet.AsNoTracking().FirstAsync(c => c.IdProduto == IdProduto);
+                return await DbSet.AsNoTracking().FirstAsync(c => c.IdProduto == IdProduto);
         }
 
         public async Task<IEnumerable<Produto>> GetAll()
@@ -41,6 +41,7 @@ namespace Infra.Data.Repository
 
         public async Task<IEnumerable<Produto>> ProcurarProduto(string ordenarPor, string valorPesquisa,string campoPesquisa)
         {
+            
             var sql = "select * from TblProduto";
 
             if (!string.IsNullOrEmpty(campoPesquisa) && (!string.IsNullOrEmpty(valorPesquisa)))
@@ -54,7 +55,8 @@ namespace Infra.Data.Repository
 
 
         public async Task<int> Create(Produto produto)
-        {
+        { 
+
             DbSet.Add(produto);
             await _UoW.Commit();
             return Convert.ToInt32(produto.IdProduto);

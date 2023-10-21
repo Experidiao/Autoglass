@@ -20,5 +20,6 @@ namespace AutoglassWeb.Models
         public string DescricaoFornecedor { get; set; }
         public string CnpjFornecedor { get; set; }
         public int Situacao { get; set; }
+        public decimal? Preco { get; set; }  
     }
 }

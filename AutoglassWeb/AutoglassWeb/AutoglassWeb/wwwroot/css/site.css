@@ -35,6 +35,7 @@ html {
   }
 }
 
+
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
@@ -62,6 +63,11 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
+
+tr {
+    height: 8px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;

@@ -5,97 +5,111 @@
 <hr />
 
 <p>
-    <button onclick="location.href='@Url.Action("Create", "Produto")'" class="btn btn-success glyphicon glyphicon-plus">Novo</button>
+	<button onclick="location.href='@Url.Action("Create", "Produto")'" class="btn btn-success glyphicon glyphicon-plus">Novo</button>
 </p>
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+	@Html.AntiForgeryToken()
 
-    <div class="row form-group">
-        <div class="col-md-4">
-            @Html.DropDownList("campoPesquisa", null, htmlAttributes: new { @class = "form-control" })
-        </div>
-        <div class="col-md-7">
-            @Html.TextBox("valorPesquisa", null, htmlAttributes: new { @class = "form-control", placeholder = "digite o texto" })
-        </div>
-        <div class="col-md-1" style="text-align:right; margin-left:-20px">
-            <input type="submit" value="Pesquisar" class="btn btn-primary" />
-        </div>
-    </div>
+	<div class="row form-group">
+		<div class="col-md-4">
+			@Html.DropDownList("campoPesquisa", null, htmlAttributes: new { @class = "form-control" })
+		</div>
+		<div class="col-md-7">
+			@Html.TextBox("valorPesquisa", null, htmlAttributes: new { @class = "form-control", placeholder = "digite o texto" })
+		</div>
+		<div class="col-md-1" style="text-align:right; margin-left:-20px">
+			<input type="submit" value="Pesquisar" class="btn btn-primary" />
+		</div>
+	</div>
 }
 
 
 <table style="width:100%" class="table table-bordered table-striped table-hover">
-    <thead>
-    <tr>
-            <th style="width:15%">
-                <a asp-action="Index" asp-route-ordenarPor="Descricao">@Html.DisplayName("Descrição")</a>
-            </th>
-            <th style="width:10%">
-               <a asp-action="Index" asp-route-ordenarPor="DtFabricacao">@Html.DisplayName("Dt.Fabricação")</a>
-            </th>
-            <th style="width:10%">
-                <a asp-action="Index" asp-route-ordenarPor="DtValidade">@Html.DisplayName("Dt.Validade")</a>
-            </th>
-            <th style="width:5%">
-                <a asp-action="Index" asp-route-ordenarPor="CodigoFornecedor">@Html.DisplayName("Cod.Fornecedor")</a>
-            </th>
-            <th style="width:15%">
-                <a asp-action="Index" asp-route-ordenarPor="DescricaoFornecedor">@Html.DisplayName("Nome Fornecedor")</a>
-            </th>
-            <th style="width:15%">
-                <a asp-action="Index" asp-route-ordenarPor="CnpjFornecedor">@Html.DisplayName("CNPJ")</a>
-            </th>
-            <th style="width:5%">
-                <a asp-action="Index" asp-route-ordenarPor="Situacao">@Html.DisplayName("Situação")</a>
-            </th>
-            <th></th>
-    </tr>
-</thead>
+	<thead>
+		<tr>
+			<th style="width:15%">
+				<a asp-action="Index" asp-route-ordenarPor="Descricao">@Html.DisplayName("Descrição")</a>
+			</th>
+			<th style="width:5%">
+				<a asp-action="Index" asp-route-ordenarPor="DtFabricacao">@Html.DisplayName("Dt.Fabricação")</a>
+			</th>
+			<th style="width:5%">
+				<a asp-action="Index" asp-route-ordenarPor="DtValidade">@Html.DisplayName("Dt.Validade")</a>
+			</th>
+			<th style="width:5%">
+				<a asp-action="Index" asp-route-ordenarPor="CodigoFornecedor">@Html.DisplayName("Cod.Fornecedor")</a>
+			</th>
+			<th style="width:15%">
+				<a asp-action="Index" asp-route-ordenarPor="DescricaoFornecedor">@Html.DisplayName("Nome Fornecedor")</a>
+			</th>
+			<th style="width:15%">
+				<a asp-action="Index" asp-route-ordenarPor="CnpjFornecedor">@Html.DisplayName("CNPJ")</a>
+			</th>
+			<th style="width:5%">
+				<a asp-action="Index" asp-route-ordenarPor="Situacao">@Html.DisplayName("Situação")</a>
+			</th>
+			<th>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DtFabricacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DtValidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoFornecedor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DescricaoFornecedor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CnpjFornecedor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Situacao)
-            </td>
-            <td>
-                @Html.ActionLink("Alterar", "Edit", new { id = item.IdProduto }) |
-                @Html.ActionLink("Vizualizar", "Details", new { id = item.IdProduto }) |
-                @Html.ActionLink("Exluir", "Delete", new { id = item.IdProduto }) |
-            </td>
-        </tr>
-    }
+			</th>
+		</tr>
+	</thead>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(x => item.Descricao)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.DtFabricacao)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.DtValidade)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CodigoFornecedor)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.DescricaoFornecedor)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CnpjFornecedor)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Situacao)
+			</td>
+			<td>
+				@if (item.Preco != null)
+				{
+					@Html.DisplayFor(modelItem => item.Preco)
+				}
+				else
+				{
+					@Html.DisplayFor(modelItem => item.Preco)
+				}
+
+			</td>
+			<td>
+				@Html.ActionLink("", "Edit", new { id = item.IdProduto }, new {@class="fa fa-pencil"}) |
+				@Html.ActionLink("", "Details", new { id = item.IdProduto },new {@class="fa fa-trash"} ) |
+				@Html.ActionLink("", "Delete", new { id = item.IdProduto }, new {@class="fa fa-search-plus"}) |
+			
+			</td>
+		</tr>
+	}
 </table>
 
 <div class="row">
-    <div class="col-md-6">
-        <span class="pull-left">
-            @Html.PagedListPager(Model, page => Url.Action("Index",new { page,ordenarPor = ViewBag.ordenarPor,valorPesquisa = ViewBag.valorPesquisa, campoPesquisa = ViewBag.campoPesquisa}))
-        </span>
-    </div>
-    <div class="col-md-4">
-        <span class="pull-right">
-            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-        </span>
-    </div>
+	<div class="col-md-6">
+		<span class="pull-left">
+			@Html.PagedListPager(Model, page => Url.Action("Index",new { page,ordenarPor = ViewBag.ordenarPor,valorPesquisa = ViewBag.valorPesquisa, campoPesquisa = ViewBag.campoPesquisa}))
+		</span>
+	</div>
+	<div class="col-md-4">
+		<span class="pull-right">
+			Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+		</span>
+	</div>
 </div>
 

@@ -3,8 +3,12 @@ using Autoglass.Application.Interface;
 using Autoglass.Application.Services;
 using Autoglass.Domain.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,17 +18,28 @@ namespace Autoglass.Services.Api.Controllers
     {
         private readonly IClienteApplication _clienteApplication;
         private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ClienteController(IClienteApplication clienteApplication, IMapper mapper)
+
+        public ClienteController(IClienteApplication clienteApplication, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _clienteApplication = clienteApplication;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        [AllowAnonymous]
+        /// <response code="200">All good here</response>
+        /// <response code="401">Unauthorized</response>
+
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAsync()
         {
+            var accessToken = _httpContextAccessor.HttpContext.Request.Headers["Authorization"];
+
+            var accessToken1 = await _httpContextAccessor.HttpContext.GetTokenAsync("access_token");
+
+
             var cliente = await _clienteApplication.GetAsync();
             if (cliente == null)
                 return NotFound();
@@ -32,7 +47,6 @@ namespace Autoglass.Services.Api.Controllers
             return Ok(cliente);
         }
 
-        [AllowAnonymous]
         [HttpGet("ClienteGet")]
         public async Task<IActionResult> GetAsync2()
         {
@@ -46,7 +60,6 @@ namespace Autoglass.Services.Api.Controllers
             return Ok(clienteDTO);
         }
 
-        [AllowAnonymous]
         [HttpGet("page/{pagina:int}/{qtdePorPagina:int}/{ordem}/{textoProcura?}")]
         public async Task<IActionResult> Page(int pagina,int qtdePorPagina, string ordem, string textoProcura)
         {
@@ -54,6 +67,10 @@ namespace Autoglass.Services.Api.Controllers
             var cliente = await _clienteApplication.Page(pagina, qtdePorPagina, ordem, textoProcura);
             return Ok(cliente);
         }
-
     }
+
+    //public async validaCliente(string : nome, string CnpjCpf)
+    //{
+    //    DomainExceptionValidation.
+    //}
 }

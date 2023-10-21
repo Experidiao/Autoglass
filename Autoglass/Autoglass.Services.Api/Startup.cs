@@ -74,10 +74,9 @@ namespace Autoglass.Services.Api
             // outra maneira de configurar o serviço automapper.
             services.AddAutoMapper(typeof(AutoMappingProfile));
 
+            // pegando as configuraçoes do arquivo Json appsettings.json
             var appSettingsSection = Configuration.GetSection("AppSettings");
-
             services.Configure<AppSettings>(appSettingsSection);
-
             var appSettings = appSettingsSection.Get<AppSettings>();
 
 

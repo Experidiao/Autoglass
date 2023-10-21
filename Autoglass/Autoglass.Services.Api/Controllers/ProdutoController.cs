@@ -97,7 +97,7 @@ namespace Autoglass.Services.Api.Controllers
             return await _produtoApplication.Delete(IdProduto);
         }
 
-
+        // desta forma os parâmetros não são obrigatórios
         [AllowAnonymous]
         [HttpGet("Page")]
         public async Task<IEnumerable<Produto>> Page(int pagina, int qtdePorPagina, string ordem, string textoProcura)

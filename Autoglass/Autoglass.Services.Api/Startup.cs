@@ -81,7 +81,7 @@ namespace Autoglass.Services.Api
 
 
             var key = Encoding.UTF8.GetBytes(appSettings.Secret);
-
+            // autenticação
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

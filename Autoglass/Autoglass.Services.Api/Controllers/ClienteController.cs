@@ -39,7 +39,6 @@ namespace Autoglass.Services.Api.Controllers
 
             var accessToken1 = await _httpContextAccessor.HttpContext.GetTokenAsync("access_token");
 
-
             var cliente = await _clienteApplication.GetAsync();
             if (cliente == null)
                 return NotFound();
@@ -69,8 +68,4 @@ namespace Autoglass.Services.Api.Controllers
         }
     }
 
-    //public async validaCliente(string : nome, string CnpjCpf)
-    //{
-    //    DomainExceptionValidation.
-    //}
 }

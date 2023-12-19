@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using System.Linq;
-using Autoglass.Application.Services;
 using Microsoft.Extensions.Logging;
 
 namespace Autoglass.Services.Api.Controllers
@@ -95,11 +94,9 @@ namespace Autoglass.Services.Api.Controllers
         [HttpGet("ObterProdutoDoClienteEntity")]
         public async Task<IActionResult> ObterProdutoDoClienteEntity(int idCliente)
         {
-
             var itens = await _clienteXprodutoApplication.ObterProdutoDoClienteEntity(idCliente);
 
             var itensDTO = _mapper.Map<List<ClienteXProdutoDTO>>(itens);
-
 
             foreach (var pedido in itensDTO)
             {

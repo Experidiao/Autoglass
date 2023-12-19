@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System;
 using System.Linq.Expressions;
 using Microsoft.Extensions.WebEncoders.Testing;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Autoglass.Services.Api.Controllers
 {
@@ -23,8 +24,7 @@ namespace Autoglass.Services.Api.Controllers
             _produtoApplication = produtoApplication;
             _mapper = mapper;
         }
-
-
+        // TODO: Aceitando varias rotas 
         [HttpGet()]
         [Route("Teste/{produto?}/{descricao}/{nome}")]
         [Route("Teste/{produto?}/{descricao}")]

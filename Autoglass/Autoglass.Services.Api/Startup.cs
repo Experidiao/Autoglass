@@ -44,6 +44,9 @@ namespace Autoglass.Services.Api
 
             services.AddMvc();
 
+        // memory cache. Para usar o cache distribuido, usar o Redis.
+       //// https://www.youtube.com/watch?v=93VuXFslkLE
+            services.AddMemoryCache();
 
             // Evitar o erro na controller de referencia circular 
             // Instalar os pacotes : NewtonSoftJson/ Microsoft.AspNetCore.Mvc
